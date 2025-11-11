@@ -34,7 +34,7 @@ using ms = std::chrono::milliseconds;
 namespace cfg {
     constexpr const char* SERVER_IP = "127.0.0.1";
     constexpr uint16_t SERVER_PORT = 6000;
-    constexpr const char* INPUT_FILE = "input.txt";
+    constexpr const char* INPUT_FILE = "test.jpg";
     constexpr uint32_t SND_BUF_SZ = 4 * 1024 * 1024;
     constexpr uint32_t RCV_BUF_SZ = 4 * 1024 * 1024;
 }
@@ -113,7 +113,7 @@ void renoTimeout() {
     sender::cwnd = 1.0;
     sender::renoState = RENO_SLOW_START;
     sender::dupAck = 0;
-    logInfo("Timeout → cwnd=" + std::to_string(sender::cwnd) + " ssthresh=" + std::to_string(sender::ssthresh));
+    logInfo("Timeout -> cwnd=" + std::to_string(sender::cwnd) + " ssthresh=" + std::to_string(sender::ssthresh));
     
     auto it = sender::winMap.find(sender::baseSeq);
     if (it != sender::winMap.end()) {
@@ -162,7 +162,7 @@ void renoDupAck() {
             sender::ssthresh = std::max(sender::cwnd / 2.0, 2.0);
             sender::cwnd = sender::ssthresh + 3;
             sender::renoState = RENO_FAST_RECOVERY;
-            logInfo("FastRetransmit → cwnd=" + std::to_string(sender::cwnd));
+            logInfo("FastRetransmit -> cwnd=" + std::to_string(sender::cwnd));
             
             auto it = sender::winMap.find(sender::baseSeq);
             if (it != sender::winMap.end()) {

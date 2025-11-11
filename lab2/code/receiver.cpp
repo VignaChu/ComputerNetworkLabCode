@@ -24,7 +24,7 @@ using std::string;
 
 // ---------- 配置 ----------
 namespace cfg {
-constexpr const char* OUTPUT_FILE     = "output.txt";
+constexpr const char* OUTPUT_FILE     = "output.jpg";
 constexpr double      PACKET_LOSS_RATE= 0.10;          // 10% 丢包
 constexpr uint32_t    RECV_WIN_PKTS   = INITIAL_WINDOW_SIZE;
 }
